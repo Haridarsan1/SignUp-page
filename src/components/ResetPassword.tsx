@@ -122,7 +122,9 @@ export const ResetPassword: React.FC = () => {
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   New Password
                 </label>
-                <Lock className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                  <Lock className="w-5 h-5" />
+                </div>
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Create a strong password"
@@ -137,7 +139,7 @@ export const ResetPassword: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-[42px] transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-4 top-11 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -169,7 +171,9 @@ export const ResetPassword: React.FC = () => {
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Confirm Password
                 </label>
-                <Lock className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                  <Lock className="w-5 h-5" />
+                </div>
                 <input
                   type={showConfirmPassword ? 'text' : 'password'}
                   placeholder="Confirm your password"
@@ -181,7 +185,7 @@ export const ResetPassword: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-4 top-[42px] transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-4 top-11 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>

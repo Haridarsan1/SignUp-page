@@ -143,8 +143,11 @@ export const AuthPage: React.FC = () => {
     if (error) {
       setMessage({ type: 'error', text: error.message });
     } else {
-      setMessage({ type: 'success', text: 'Password reset link sent to your email!' });
-      setForgotEmail('');
+      setMessage({ type: 'success', text: 'Password reset link sent to your email! Check your inbox.' });
+      setTimeout(() => {
+        setMode('login');
+        setForgotEmail('');
+      }, 3000);
     }
 
     setIsLoading(false);
@@ -159,7 +162,7 @@ export const AuthPage: React.FC = () => {
     if (error) {
       setMessage({
         type: 'error',
-        text: 'Google sign-in is not configured yet. Please use email/password authentication.'
+        text: error.message || 'Google sign-in failed. Please try again or use email/password.'
       });
       setIsLoading(false);
     }
@@ -238,7 +241,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Username or Email
                     </label>
-                    <User className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <User className="w-5 h-5" />
+                    </div>
                     <input
                       type="text"
                       placeholder="Enter username or email"
@@ -253,7 +258,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Password
                     </label>
-                    <Lock className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <Lock className="w-5 h-5" />
+                    </div>
                     <input
                       type={showPassword ? 'text' : 'password'}
                       placeholder="Enter your password"
@@ -265,7 +272,7 @@ export const AuthPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-[42px] transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                      className="absolute right-4 top-11 text-gray-400 hover:text-gray-600 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -344,7 +351,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Username
                     </label>
-                    <User className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <User className="w-5 h-5" />
+                    </div>
                     <input
                       type="text"
                       placeholder="Choose a unique username"
@@ -359,7 +368,7 @@ export const AuthPage: React.FC = () => {
                       className="w-full pl-12 pr-10 py-3.5 border-2 border-gray-200 rounded-xl focus:border-blue-600 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-300 hover:border-gray-300 bg-white"
                     />
                     {usernameAvailable !== null && signupData.username.length >= 3 && (
-                      <div className="absolute right-4 top-[42px] transform -translate-y-1/2">
+                      <div className="absolute right-4 top-11 pointer-events-none">
                         {usernameAvailable ? (
                           <CheckCircle className="w-5 h-5 text-green-500" />
                         ) : (
@@ -378,7 +387,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Full Name
                     </label>
-                    <User className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <User className="w-5 h-5" />
+                    </div>
                     <input
                       type="text"
                       placeholder="Enter your full name"
@@ -393,7 +404,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Email Address
                     </label>
-                    <Mail className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <Mail className="w-5 h-5" />
+                    </div>
                     <input
                       type="email"
                       placeholder="your.email@example.com"
@@ -408,7 +421,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Phone Number
                     </label>
-                    <Phone className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <Phone className="w-5 h-5" />
+                    </div>
                     <input
                       type="tel"
                       placeholder="+1 (555) 123-4567"
@@ -423,7 +438,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Location
                     </label>
-                    <MapPin className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <MapPin className="w-5 h-5" />
+                    </div>
                     <input
                       type="text"
                       placeholder="City, Country"
@@ -438,7 +455,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Password
                     </label>
-                    <Lock className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <Lock className="w-5 h-5" />
+                    </div>
                     <input
                       type={showPassword ? 'text' : 'password'}
                       placeholder="Create a strong password"
@@ -453,7 +472,7 @@ export const AuthPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-[42px] transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                      className="absolute right-4 top-11 text-gray-400 hover:text-gray-600 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -485,7 +504,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Confirm Password
                     </label>
-                    <Lock className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <Lock className="w-5 h-5" />
+                    </div>
                     <input
                       type={showConfirmPassword ? 'text' : 'password'}
                       placeholder="Confirm your password"
@@ -497,7 +518,7 @@ export const AuthPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-4 top-[42px] transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                      className="absolute right-4 top-11 text-gray-400 hover:text-gray-600 transition-colors"
                     >
                       {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -571,7 +592,9 @@ export const AuthPage: React.FC = () => {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Email Address
                     </label>
-                    <Mail className="absolute left-4 top-[42px] transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <div className="absolute left-4 top-11 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                      <Mail className="w-5 h-5" />
+                    </div>
                     <input
                       type="email"
                       placeholder="your.email@example.com"
